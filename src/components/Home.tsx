@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import "../App.css";
 import { fetchHealthCheckData } from "../functions/fetchHealthCheckData";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 function Home() {
   const { data, error, isLoading, isError } = useQuery({
@@ -43,7 +44,10 @@ function Home() {
 
   return (
     <>
-      <button onClick={handleChatGPTRequest}>Call chatgpt</button>
+      <button onClick={handleChatGPTRequest} className="">
+        Call chatgpt
+      </button>
+      <GoogleLoginButton />
       <div className="mb-6 font-poppins">
         {isLoading && <p>Loading...</p>}
         {isError && <p>Error: {error.message}</p>}
