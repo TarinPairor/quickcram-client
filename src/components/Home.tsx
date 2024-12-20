@@ -21,7 +21,9 @@ function Home() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ prompt: "Who are you?" }),
+          body: JSON.stringify({
+            prompt: "I need to meet John at 7:50-8:30PM tomorrow.",
+          }),
         }
       );
 
