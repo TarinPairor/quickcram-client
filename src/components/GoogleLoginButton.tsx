@@ -1,40 +1,21 @@
-import { GoogleCredentialResponse, GoogleLogin } from "@react-oauth/google";
-
 const GoogleLoginButton = () => {
-  const handleSuccess = async (
-    credentialResponse: GoogleCredentialResponse
-  ) => {
-    console.log("Login Success:", credentialResponse);
-    const { credential } = credentialResponse;
+  const handleLoginClick = () => {
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    const redirectUri = import.meta.env.VITE_REDIRECT_URI;
+    const scope =
+      "openid profile email https://www.googleapis.com/auth/calendar";
+    const responseType = "code";
+    const accessType = "offline";
 
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/verify-token`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ credential }),
-        }
-      );
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${encodeURIComponent(
+      scope
+    )}&access_type=${accessType}`;
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("Backend response:", data);
-    } catch (error) {
-      console.error("Error verifying token:", error);
-    }
+    // Redirect the user to Google's OAuth 2.0 authorization endpoint
+    window.location.href = authUrl;
   };
 
-  const handleError = () => {
-    console.error("Login Failed:");
-  };
-
-  return <GoogleLogin onSuccess={handleSuccess} onError={handleError} />;
+  return <button onClick={handleLoginClick}>Sign in with Google</button>;
 };
 
 export default GoogleLoginButton;

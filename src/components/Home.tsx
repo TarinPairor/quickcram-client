@@ -11,7 +11,6 @@ function Home() {
   });
 
   const [event, setEvent] = useState("");
-  const [id, setId] = useState(localStorage.getItem("id") || "");
 
   const handleChatGPTRequest = async () => {
     try {
@@ -37,9 +36,24 @@ function Home() {
     }
   };
 
-  const handleIdSubmit = () => {
-    localStorage.setItem("id", id);
-    alert(`ID ${id} stored in browser`);
+  const createCalendarEvent = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/create-calendar-event`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          // empty body
+          body: JSON.stringify({}),
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error("Error creating calendar event:", error);
+    }
   };
 
   return (
@@ -64,26 +78,8 @@ function Home() {
           id="large-input"
           className="block w-full p-4 text-gray-900 border-b border-l border-gray-300 rounded-lg bg-gray-50 text-base focus:border-b-blue-500 focus:border-l-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-b-blue-500"
         />
-      </div>
-      <div className="mb-6 font-poppins">
-        <label
-          htmlFor="id-input"
-          className="block mb-2 text-lg text-gray-900 dark:text-white"
-        >
-          Set ID
-        </label>
-        <input
-          type="text"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          id="id-input"
-          className="block w-full p-4 text-gray-900 border-b border-l border-gray-300 rounded-lg bg-gray-50 text-base focus:border-b-blue-500 focus:border-l-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-b-blue-500"
-        />
-        <button
-          onClick={handleIdSubmit}
-          className="mt-2 p-2 bg-blue-500 text-white rounded"
-        >
-          Submit ID
+        <button onClick={createCalendarEvent} className="mt-4">
+          Create Calendar Event
         </button>
       </div>
     </>
