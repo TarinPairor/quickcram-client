@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import "../App.css";
 import { fetchHealthCheckData } from "../functions/fetchHealthCheckData";
@@ -16,6 +16,14 @@ function Home() {
     queryKey: ["healthCheck"],
     queryFn: fetchHealthCheckData,
   });
+
+  const [isSignedIn, setIsSignedIn] = useState(
+    !!localStorage.getItem("accessToken")
+  );
+
+  useEffect(() => {
+    setIsSignedIn(!!localStorage.getItem("accessToken"));
+  }, []);
 
   const [prompt, setPrompt] = useState("");
 
@@ -41,26 +49,29 @@ function Home() {
       <button onClick={handleChatGPTClick} className="">
         Call chatgpt
       </button>
-      <GoogleLoginButton />
+
+      {isSignedIn ? (
+        <>
+          <label
+            htmlFor="large-input"
+            className="block mb-2 text-lg text-gray-900 dark:text-white"
+          >
+            Large input
+          </label>
+          <textarea
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            id="large-input"
+            className="block w-full p-4 text-gray-900 border-b border-l border-gray-300 rounded-lg bg-gray-50 text-base focus:border-b-blue-500 focus:border-l-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-b-blue-500"
+          />
+        </>
+      ) : (
+        <GoogleLoginButton />
+      )}
       <div className="mb-6 font-poppins">
         {isLoading && <p>Loading...</p>}
         {isError && <p>Error: {error.message}</p>}
         {healthCheck && <pre>{JSON.stringify(healthCheck, null, 2)}</pre>}
-        <label
-          htmlFor="large-input"
-          className="block mb-2 text-lg text-gray-900 dark:text-white"
-        >
-          Large input
-        </label>
-        <textarea
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          id="large-input"
-          className="block w-full p-4 text-gray-900 border-b border-l border-gray-300 rounded-lg bg-gray-50 text-base focus:border-b-blue-500 focus:border-l-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-b-blue-500"
-        />
-        {/* <button onClick={createCalendarEvent} className="mt-4">
-          Create Calendar Event
-        </button> */}
       </div>
     </>
   );
