@@ -1,8 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import HandleAuthCallback from "./components/HandleAuthCallback";
+import Home from "./pages/Home";
+import HandleAuthCallback from "./pages/HandleAuthCallback";
+import Test from "./pages/Test";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +16,7 @@ export default function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/test" element={<>Test page</>} />
+            <Route path="/test" element={<Test />} />
             <Route path="/auth/callback" element={<HandleAuthCallback />} />
           </Routes>
         </Router>

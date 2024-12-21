@@ -1,22 +1,10 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import "../App.css";
-import { fetchHealthCheckData } from "../functions/fetchHealthCheckData";
-import GoogleLoginButton from "./GoogleLoginButton";
+import GoogleLoginButton from "../components/GoogleLoginButton";
 import { useChatGPTMutation } from "../functions/handleChatGPTRequest";
 import { useCreateCalendarEventMutation } from "../functions/useCreateCalendarEventMutation";
 
 function Home() {
-  const {
-    data: healthCheck,
-    error,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["healthCheck"],
-    queryFn: fetchHealthCheckData,
-  });
-
   const [isSignedIn, setIsSignedIn] = useState(
     !!localStorage.getItem("accessToken")
   );
@@ -68,11 +56,6 @@ function Home() {
       ) : (
         <GoogleLoginButton />
       )}
-      <div className="mb-6 font-poppins">
-        {isLoading && <p>Loading...</p>}
-        {isError && <p>Error: {error.message}</p>}
-        {healthCheck && <pre>{JSON.stringify(healthCheck, null, 2)}</pre>}
-      </div>
     </>
   );
 }
