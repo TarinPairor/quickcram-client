@@ -3,7 +3,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import HandleAuthCallback from "./pages/HandleAuthCallback";
-import Test from "./pages/Test";
+// import Test from "./pages/Test";
 
 const queryClient = new QueryClient();
 
