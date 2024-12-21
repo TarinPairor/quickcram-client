@@ -4,6 +4,7 @@ import GoogleLoginButton from "../components/GoogleLoginButton";
 import { useChatGPTMutation } from "../functions/handleChatGPTRequest";
 import { useCreateCalendarEventMutation } from "../functions/useCreateCalendarEventMutation";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 function Home() {
   const [isSignedIn, setIsSignedIn] = useState(
@@ -47,11 +48,10 @@ function Home() {
           >
             Large input
           </label>
-          <textarea
+          <Textarea
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             id="large-input"
-            className="block w-full p-4 text-gray-900 border-b border-l border-gray-300 rounded-lg bg-gray-50 text-base focus:border-b-blue-500 focus:border-l-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-b-blue-500"
           />
         </>
       ) : (
