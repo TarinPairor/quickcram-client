@@ -3,6 +3,7 @@ import "../App.css";
 import GoogleLoginButton from "../components/GoogleLoginButton";
 import { useChatGPTMutation } from "../functions/handleChatGPTRequest";
 import { useCreateCalendarEventMutation } from "../functions/useCreateCalendarEventMutation";
+import { Button } from "@/components/ui/button";
 
 function Home() {
   const [isSignedIn, setIsSignedIn] = useState(
@@ -34,9 +35,9 @@ function Home() {
 
   return (
     <>
-      <button onClick={handleChatGPTClick} className="">
+      <Button onClick={handleChatGPTClick} className="">
         Call chatgpt
-      </button>
+      </Button>
 
       {isSignedIn ? (
         <>
