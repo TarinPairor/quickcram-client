@@ -7,7 +7,7 @@ import {
 
 export default function InfoAccordion() {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="multiple" className="w-full">
       <AccordionItem value="item-0">
         <AccordionTrigger>
           <div className="font-bold text-lg">Some common questions</div>
