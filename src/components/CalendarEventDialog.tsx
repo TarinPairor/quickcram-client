@@ -68,10 +68,8 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Confirm Event Creation</DialogTitle>
-          <DialogDescription>
-            Adjust the event details as needed before confirming.
-          </DialogDescription>
+          <DialogTitle>This is your event</DialogTitle>
+          <DialogDescription>View the details of your event.</DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <div>

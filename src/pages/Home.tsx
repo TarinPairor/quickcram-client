@@ -1,11 +1,12 @@
 import { useState } from "react";
-import "../App.css";
+// import "../App.css";
 import GoogleLoginButton from "../components/GoogleLoginButton";
 import { useChatGPTMutation } from "../functions/handleChatGPTRequest";
 import { useCreateCalendarEventMutation } from "../functions/useCreateCalendarEventMutation";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import CalendarEventDialog from "../components/CalendarEventDialog";
+import InfoAccordion from "@/components/InfoAccordion";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -52,25 +53,32 @@ function Home() {
   };
 
   return (
-    <div className="container flex flex-col gap-2">
-      <Button onClick={handleChatGPTClick} className="">
-        Call chatgpt
-      </Button>
+    <div className="flex flex-col items-center">
+      <div>
+        <h1 className="text-4xl font-bold text-center mt-4">QuickCram</h1>
+        <p className="text-center mt-2">
+          Quickly create Google Calendar events with AI
+        </p>
+      </div>
+      <div className="container flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
+        <Button onClick={handleChatGPTClick} variant={"default"}>
+          Submit Event
+        </Button>
 
-      <Textarea
-        value={prompt}
-        onChange={(e) => setPrompt(e.target.value)}
-        id="large-input"
-      />
-
-      <GoogleLoginButton />
-
-      <CalendarEventDialog
-        isOpen={isDialogOpen}
-        onRequestClose={() => setIsDialogOpen(false)}
-        onConfirm={handleConfirm}
-        eventData={eventData}
-      />
+        <Textarea
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          id="large-input"
+        />
+        <GoogleLoginButton />
+        <CalendarEventDialog
+          isOpen={isDialogOpen}
+          onRequestClose={() => setIsDialogOpen(false)}
+          onConfirm={handleConfirm}
+          eventData={eventData}
+        />
+      </div>
+      <InfoAccordion />
     </div>
   );
 }
