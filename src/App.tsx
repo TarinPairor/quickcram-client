@@ -16,7 +16,7 @@ export default function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/test" element={<>Test</>} />
             <Route path="/auth/callback" element={<HandleAuthCallback />} />
           </Routes>
         </Router>
