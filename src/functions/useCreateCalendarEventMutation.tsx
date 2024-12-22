@@ -23,7 +23,6 @@ const createCalendarEvent = async (event: string) => {
     const reformattedEvent = JSON.parse(event);
     console.log("Reformatted event:", reformattedEvent);
     console.log("Correct event format:", testEvent);
-    //convert event to testEvent format
 
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/api/create-calendar-event`,

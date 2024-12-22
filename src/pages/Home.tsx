@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import "../App.css";
 import GoogleLoginButton from "../components/GoogleLoginButton";
 import { useChatGPTMutation } from "../functions/handleChatGPTRequest";
 import { useCreateCalendarEventMutation } from "../functions/useCreateCalendarEventMutation";
