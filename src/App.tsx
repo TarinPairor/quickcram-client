@@ -12,16 +12,18 @@ const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <GoogleOAuthProvider clientId={clientId}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="/auth/callback" element={<HandleAuthCallback />} />
-          </Routes>
-        </Router>
-      </GoogleOAuthProvider>
-    </QueryClientProvider>
+    <div className="font-sans">
+      <QueryClientProvider client={queryClient}>
+        <GoogleOAuthProvider clientId={clientId}>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/test" element={<Test />} />
+              <Route path="/auth/callback" element={<HandleAuthCallback />} />
+            </Routes>
+          </Router>
+        </GoogleOAuthProvider>
+      </QueryClientProvider>
+    </div>
   );
 }
