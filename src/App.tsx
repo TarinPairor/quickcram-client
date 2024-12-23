@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import HandleAuthCallback from "./pages/HandleAuthCallback";
 import Test from "./pages/Test";
 import "./App.css";
+import { Toaster } from "sonner";
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,7 @@ export default function App() {
     <div className="font-sans">
       <QueryClientProvider client={queryClient}>
         <GoogleOAuthProvider clientId={clientId}>
+          <Toaster richColors />
           <Router>
             <Routes>
               <Route path="/" element={<Home />} />

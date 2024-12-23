@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import CalendarEventDialog from "../components/CalendarEventDialog";
 import InfoAccordion from "@/components/InfoAccordion";
 import ProfileDropdown from "@/components/ProfileDropdown";
+import { toast } from "sonner";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -20,6 +21,7 @@ function Home() {
 
   const handleChatGPTClick = async () => {
     if (!prompt) {
+      toast.error("Please enter an event description.");
       return;
     }
     if (prompt === previousPrompt && previousEventData) {
@@ -36,6 +38,15 @@ function Home() {
             setPreviousPrompt(prompt);
             setPreviousEventData(data);
             setIsDialogOpen(true);
+            toast.success("Event created successfully!", {
+              description: "Check your Google Calendar to see the event.",
+              action: {
+                label: "Close",
+                onClick: () => {
+                  toast.dismiss();
+                },
+              },
+            });
           }
         },
         onError: (error) => {

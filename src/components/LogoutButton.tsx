@@ -1,3 +1,5 @@
+import { toast } from "sonner";
+
 const LogoutButton: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
@@ -5,6 +7,14 @@ const LogoutButton: React.FC = () => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userPicture");
     localStorage.removeItem("userEmail");
+    toast.success("Logged out successfully", {
+      action: {
+        label: "Close",
+        onClick: () => {
+          toast.dismiss();
+        },
+      },
+    });
   };
 
   return (

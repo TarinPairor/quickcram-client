@@ -1,4 +1,5 @@
 import { CredentialResponse } from "@react-oauth/google";
+import { toast } from "sonner";
 
 export const fetchUserPayload = async (response: CredentialResponse) =>
   fetch(`${import.meta.env.VITE_BACKEND_URL}/api/verify-credential`, {
@@ -17,6 +18,17 @@ export const fetchUserPayload = async (response: CredentialResponse) =>
       console.log("User name:", localStorage.getItem("userName"));
       console.log("User email:", localStorage.getItem("userEmail"));
       console.log("User picture:", localStorage.getItem("userPicture"));
+      toast.info(
+        `Hi ${localStorage.getItem("userName")?.replace(/['"]+/g, "")}`,
+        {
+          action: {
+            label: "Close",
+            onClick: () => {
+              toast.dismiss();
+            },
+          },
+        }
+      );
     })
     .catch((error) => {
       console.error("Error verifying credential:", error);
