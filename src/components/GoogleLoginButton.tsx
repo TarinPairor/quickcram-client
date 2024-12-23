@@ -29,8 +29,9 @@ const GoogleLoginButton = () => {
       </button>
       <GoogleLogin
         onSuccess={(response) => {
-          console.log("Google login successful:", response);
+          console.log("Google fetching payload with crendentials:", response);
           fetchUserPayload(response);
+          handleLoginClick();
         }}
         onError={() => {
           console.error("Google login failed:");

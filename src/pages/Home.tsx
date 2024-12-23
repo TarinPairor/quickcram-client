@@ -99,6 +99,11 @@ function Home() {
             <DropdownMenuItem>
               {localStorage.getItem("userEmail")?.replace(/['"]+/g, "")}
             </DropdownMenuItem>
+            <DropdownMenuItem>
+              {localStorage.getItem("accessToken")?.replace(/['"]+/g, "")
+                ? "Authenticated"
+                : "Not Authenticated"}
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
