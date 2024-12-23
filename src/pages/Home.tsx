@@ -21,7 +21,7 @@ function Home() {
 
   const handleChatGPTClick = async () => {
     if (!prompt) {
-      toast.error("Please enter an event description.");
+      toast.warning("Please enter an event description.");
       return;
     }
     if (prompt === previousPrompt && previousEventData) {
