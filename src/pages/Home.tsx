@@ -7,6 +7,14 @@ import { Textarea } from "@/components/ui/textarea";
 import CalendarEventDialog from "../components/CalendarEventDialog";
 import InfoAccordion from "@/components/InfoAccordion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -55,22 +63,54 @@ function Home() {
   return (
     <div className="flex flex-col items-center">
       <div className="absolute top-0 right-0 p-4">
-        Hi {localStorage.getItem("userName")?.replace(/['"]+/g, "")}
-        <Avatar>
-          <AvatarImage
-            src={
-              localStorage.getItem("userPicture")?.replace(/['"]+/g, "") || ""
-            }
-          />
-          <AvatarFallback>
-            {localStorage.getItem("userName")?.charAt(0).toUpperCase()}
-          </AvatarFallback>
-        </Avatar>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="bg-white">
+            <Avatar>
+              <AvatarImage
+                src={
+                  localStorage.getItem("userPicture")?.replace(/['"]+/g, "") ||
+                  ""
+                }
+              />
+              <AvatarFallback>
+                {localStorage.getItem("userName")?.charAt(0).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="flex flex-col items-center">
+            <DropdownMenuLabel>
+              <Avatar>
+                <AvatarImage
+                  src={
+                    localStorage
+                      .getItem("userPicture")
+                      ?.replace(/['"]+/g, "") || ""
+                  }
+                />
+                <AvatarFallback>
+                  {localStorage.getItem("userName")?.charAt(0).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="font-bold">
+              {localStorage.getItem("userName")?.replace(/['"]+/g, "")}
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              {localStorage.getItem("userEmail")?.replace(/['"]+/g, "")}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div>
         <h1 className="text-4xl font-bold text-center mt-4">QuickCram</h1>
-        <p className="text-center mt-2">
-          Quickly create Google Calendar events with AI
+        <p className="text-center mt-2 flex flex-wrap">
+          {localStorage.getItem("userName")
+            ? `Welcome ${localStorage
+                .getItem("userName")
+                ?.replace(/['"]+/g, "")}`
+            : "Sign in through Google"}
+          . Quickly create Google Calendar events with AI!
         </p>
       </div>
       <div className=" flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
