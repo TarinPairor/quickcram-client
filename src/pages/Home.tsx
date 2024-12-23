@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -64,7 +65,7 @@ function Home() {
     <div className="flex flex-col items-center">
       <div className="absolute top-0 right-0 p-4">
         <DropdownMenu>
-          <DropdownMenuTrigger className="bg-white">
+          <DropdownMenuTrigger className="bg-white inline-flex p-0">
             <Avatar>
               <AvatarImage
                 src={
@@ -100,9 +101,11 @@ function Home() {
               {localStorage.getItem("userEmail")?.replace(/['"]+/g, "")}
             </DropdownMenuItem>
             <DropdownMenuItem>
-              {localStorage.getItem("accessToken")?.replace(/['"]+/g, "")
-                ? "Authenticated"
-                : "Not Authenticated"}
+              {localStorage.getItem("accessToken")?.replace(/['"]+/g, "") ? (
+                <Badge variant="correct">Authenticated</Badge>
+              ) : (
+                <Badge variant="destructive">Not Authenticated</Badge>
+              )}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
