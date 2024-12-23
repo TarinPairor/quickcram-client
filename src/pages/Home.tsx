@@ -6,16 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import CalendarEventDialog from "../components/CalendarEventDialog";
 import InfoAccordion from "@/components/InfoAccordion";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Badge } from "@/components/ui/badge";
+import ProfileDropdown from "@/components/ProfileDropdown";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -62,53 +53,10 @@ function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center min-h-screen">
       <div className="absolute top-0 right-0 p-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger className="bg-white inline-flex p-0">
-            <Avatar>
-              <AvatarImage
-                src={
-                  localStorage.getItem("userPicture")?.replace(/['"]+/g, "") ||
-                  ""
-                }
-              />
-              <AvatarFallback>
-                {localStorage.getItem("userName")?.charAt(0).toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="flex flex-col items-center">
-            <DropdownMenuLabel>
-              <Avatar>
-                <AvatarImage
-                  src={
-                    localStorage
-                      .getItem("userPicture")
-                      ?.replace(/['"]+/g, "") || ""
-                  }
-                />
-                <AvatarFallback>
-                  {localStorage.getItem("userName")?.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="font-bold">
-              {localStorage.getItem("userName")?.replace(/['"]+/g, "")}
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              {localStorage.getItem("userEmail")?.replace(/['"]+/g, "")}
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              {localStorage.getItem("accessToken")?.replace(/['"]+/g, "") ? (
-                <Badge variant="correct">Authenticated</Badge>
-              ) : (
-                <Badge variant="destructive">Not Authenticated</Badge>
-              )}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {localStorage.getItem("userName") &&
+          localStorage.getItem("accessToken") && <ProfileDropdown />}
       </div>
       <div>
         <h1 className="text-4xl font-bold text-center mt-4">QuickCram</h1>
