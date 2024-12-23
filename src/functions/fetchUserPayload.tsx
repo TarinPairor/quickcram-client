@@ -12,7 +12,11 @@ export const fetchUserPayload = async (response: CredentialResponse) =>
     .then((data) => {
       console.log("Verification response:", data);
       localStorage.setItem("userName", JSON.stringify(data.payload.given_name));
+      localStorage.setItem("userEmail", JSON.stringify(data.payload.email));
+      localStorage.setItem("userPicture", JSON.stringify(data.payload.picture));
       console.log("User name:", localStorage.getItem("userName"));
+      console.log("User email:", localStorage.getItem("userEmail"));
+      console.log("User picture:", localStorage.getItem("userPicture"));
     })
     .catch((error) => {
       console.error("Error verifying credential:", error);

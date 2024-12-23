@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import CalendarEventDialog from "../components/CalendarEventDialog";
 import InfoAccordion from "@/components/InfoAccordion";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -55,6 +56,16 @@ function Home() {
     <div className="flex flex-col items-center">
       <div className="absolute top-0 right-0 p-4">
         Hi {localStorage.getItem("userName")?.replace(/['"]+/g, "")}
+        <Avatar>
+          <AvatarImage
+            src={
+              localStorage.getItem("userPicture")?.replace(/['"]+/g, "") || ""
+            }
+          />
+          <AvatarFallback>
+            {localStorage.getItem("userName")?.charAt(0).toUpperCase()}
+          </AvatarFallback>
+        </Avatar>
       </div>
       <div>
         <h1 className="text-4xl font-bold text-center mt-4">QuickCram</h1>
