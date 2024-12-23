@@ -8,6 +8,7 @@ import CalendarEventDialog from "../components/CalendarEventDialog";
 import InfoAccordion from "@/components/InfoAccordion";
 import ProfileDropdown from "@/components/ProfileDropdown";
 import { toast } from "sonner";
+import Dictaphone from "../components/Dictaphone";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -65,6 +66,7 @@ function Home() {
 
   return (
     <div className="flex flex-col items-center min-h-screen">
+      <Dictaphone />
       <div className="absolute top-0 right-0 p-4">
         {localStorage.getItem("userName") &&
           localStorage.getItem("accessToken") && <ProfileDropdown />}
