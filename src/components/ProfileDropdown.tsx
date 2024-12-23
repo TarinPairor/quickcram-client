@@ -13,8 +13,8 @@ import { Separator } from "./ui/separator";
 export default function ProfileDropdown() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="bg-white inline-flex p-0">
-        <Avatar>
+      <DropdownMenuTrigger className="bg-white inline-flex rounded-full p-0">
+        <Avatar className="md:hover:scale-110">
           <AvatarImage
             src={
               localStorage.getItem("userPicture")?.replace(/['"]+/g, "") || ""
