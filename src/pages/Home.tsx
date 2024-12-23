@@ -53,13 +53,16 @@ function Home() {
 
   return (
     <div className="flex flex-col items-center">
+      <div className="absolute top-0 right-0 p-4">
+        Hi {localStorage.getItem("userName")?.replace(/['"]+/g, "")}
+      </div>
       <div>
         <h1 className="text-4xl font-bold text-center mt-4">QuickCram</h1>
         <p className="text-center mt-2">
           Quickly create Google Calendar events with AI
         </p>
       </div>
-      <div className="container flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
+      <div className=" flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
         <Button onClick={handleChatGPTClick} variant={"default"}>
           Submit Event
         </Button>

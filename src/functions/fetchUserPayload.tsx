@@ -11,6 +11,8 @@ export const fetchUserPayload = async (response: CredentialResponse) =>
     .then((response) => response.json())
     .then((data) => {
       console.log("Verification response:", data);
+      localStorage.setItem("userName", JSON.stringify(data.payload.given_name));
+      console.log("User name:", localStorage.getItem("userName"));
     })
     .catch((error) => {
       console.error("Error verifying credential:", error);
