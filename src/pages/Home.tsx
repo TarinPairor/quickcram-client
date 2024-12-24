@@ -9,6 +9,7 @@ import InfoAccordion from "@/components/InfoAccordion";
 import ProfileDropdown from "@/components/ProfileDropdown";
 import { toast } from "sonner";
 import Dictaphone from "../components/Dictaphone";
+import AppHeader from "../components/AppHeader";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -16,6 +17,10 @@ function Home() {
   const [eventData, setEventData] = useState("");
   const [previousPrompt, setPreviousPrompt] = useState("");
   const [previousEventData, setPreviousEventData] = useState("");
+
+  // const [isListening, setIsListening] = useState(false);
+  // const [note, setNote] = useState<string | null | never>(null);
+  // const [savedNotes, setSavedNotes] = useState<string[]>([]);
 
   const chatGPTMutation = useChatGPTMutation();
   const createCalendarEventMutation = useCreateCalendarEventMutation();
@@ -71,17 +76,7 @@ function Home() {
         {localStorage.getItem("userName") &&
           localStorage.getItem("accessToken") && <ProfileDropdown />}
       </div>
-      <div>
-        <h1 className="text-4xl font-bold text-center mt-4">QuickCram</h1>
-        <p className="text-center mt-2 flex flex-wrap">
-          {localStorage.getItem("userName")
-            ? `Welcome ${localStorage
-                .getItem("userName")
-                ?.replace(/['"]+/g, "")}`
-            : "Sign in through Google"}
-          . Quickly create Google Calendar events with AI!
-        </p>
-      </div>
+      <AppHeader />
       <div className=" flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
         <Button onClick={handleChatGPTClick} variant={"default"}>
           Submit Event
