@@ -10,6 +10,8 @@ import { Badge } from "@/components/ui/badge";
 import LogoutButton from "./LogoutButton";
 import { Separator } from "./ui/separator";
 import { useMemo } from "react";
+import { Button } from "./ui/button";
+import { redirectToAuthPage } from "@/functions/redirectToAuthPage";
 
 export default function ProfileDropdown() {
   const userPicture = useMemo(() => {
@@ -52,6 +54,11 @@ export default function ProfileDropdown() {
           ) : (
             <Badge variant="destructive">Not Authenticated</Badge>
           )}
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Button variant={"outline"} onClick={redirectToAuthPage}>
+            Get Access Token
+          </Button>
         </DropdownMenuItem>
         <Separator />
         <DropdownMenuItem>
