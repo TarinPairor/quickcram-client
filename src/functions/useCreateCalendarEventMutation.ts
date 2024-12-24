@@ -53,7 +53,7 @@ export const useCreateCalendarEventMutation = () => {
     onSuccess: () => {
       console.log("Calendar event created successfully!");
       toast.success("Event created successfully!", {
-        description: "Check your Google Calendar to see the event.",
+        description: "Check your Google Calendar!",
         action: {
           label: "Close",
           onClick: () => {
@@ -65,7 +65,7 @@ export const useCreateCalendarEventMutation = () => {
     onError: (error) => {
       console.error("Error creating calendar event:", error);
       toast.error("Error creating event.", {
-        description: "Maybe try logging in again?",
+        description: "Try logging in again?",
         action: {
           label: "Close",
           onClick: () => {
