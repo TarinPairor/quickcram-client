@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import GoogleLoginButton from "../components/GoogleLoginButton";
 import { useChatGPTMutation } from "../functions/handleChatGPTRequest";
 import { useCreateCalendarEventMutation } from "../functions/useCreateCalendarEventMutation";
@@ -8,7 +8,6 @@ import CalendarEventDialog from "../components/CalendarEventDialog";
 import InfoAccordion from "@/components/InfoAccordion";
 import ProfileDropdown from "@/components/ProfileDropdown";
 import { toast } from "sonner";
-import Dictaphone from "../components/Dictaphone";
 import AppHeader from "../components/AppHeader";
 
 function Home() {
@@ -17,10 +16,14 @@ function Home() {
   const [eventData, setEventData] = useState("");
   const [previousPrompt, setPreviousPrompt] = useState("");
   const [previousEventData, setPreviousEventData] = useState("");
+  const [isListening, setIsListening] = useState(false);
 
-  // const [isListening, setIsListening] = useState(false);
-  // const [note, setNote] = useState<string | null | never>(null);
-  // const [savedNotes, setSavedNotes] = useState<string[]>([]);
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const mic = useMemo(
+    () => (SpeechRecognition ? new SpeechRecognition() : null),
+    [SpeechRecognition]
+  );
 
   const chatGPTMutation = useChatGPTMutation();
   const createCalendarEventMutation = useCreateCalendarEventMutation();
@@ -69,19 +72,69 @@ function Home() {
     }
   };
 
+  useEffect(() => {
+    if (!mic) {
+      console.error("SpeechRecognition is not supported in this browser.");
+      return;
+    }
+
+    const handleListen = () => {
+      if (isListening) {
+        setPrompt("");
+        mic.start();
+        mic.onend = () => {
+          console.log("continue..");
+          mic.start();
+        };
+      } else {
+        mic.stop();
+        mic.onend = () => {
+          console.log("Stopped Mic on Click");
+        };
+      }
+      mic.onstart = () => {
+        console.log("Mics on");
+      };
+
+      mic.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join("");
+        console.log(transcript);
+        setPrompt(transcript);
+        mic.onerror = (event) => {
+          console.log(event.error);
+        };
+      };
+    };
+    handleListen();
+  }, [isListening, mic]);
+
   return (
     <div className="flex flex-col items-center min-h-screen">
-      <Dictaphone />
+      {/* <Dictaphone /> */}
       <div className="absolute top-0 right-0 p-4">
         {localStorage.getItem("userName") &&
           localStorage.getItem("accessToken") && <ProfileDropdown />}
       </div>
       <AppHeader />
-      <div className=" flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
+      <div className="flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
         <Button onClick={handleChatGPTClick} variant={"default"}>
           Submit Event
         </Button>
-
+        {!mic ? (
+          <span className="font-light text-xs">
+            changr browser for audio input
+          </span>
+        ) : (
+          <Button
+            variant={"ghost"}
+            onClick={() => setIsListening((prevState) => !prevState)}
+          >
+            Start/Stop {isListening ? <span>🎙️...</span> : <span>🛑</span>}
+          </Button>
+        )}
         <Textarea
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
