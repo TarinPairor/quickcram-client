@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const testEvent = {
   summary: "Test Event",
@@ -36,13 +37,42 @@ const createCalendarEvent = async (event: string) => {
     );
     console.log("Sent reformatted event:", { event: reformattedEvent });
     console.log(response);
+    if (!response.ok) {
+      console.log("Error creating calendar event:", response);
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
   } catch (error) {
     console.error("Error creating calendar event:", error);
+    throw error;
   }
 };
 
 export const useCreateCalendarEventMutation = () => {
   return useMutation<void, Error, string>({
     mutationFn: (event: string) => createCalendarEvent(event),
+    onSuccess: () => {
+      console.log("Calendar event created successfully!");
+      toast.success("Event created successfully!", {
+        description: "Check your Google Calendar to see the event.",
+        action: {
+          label: "Close",
+          onClick: () => {
+            toast.dismiss();
+          },
+        },
+      });
+    },
+    onError: (error) => {
+      console.error("Error creating calendar event:", error);
+      toast.error("Error creating event.", {
+        description: "Maybe try logging in again?",
+        action: {
+          label: "Close",
+          onClick: () => {
+            toast.dismiss();
+          },
+        },
+      });
+    },
   });
 };

@@ -9,44 +9,45 @@ import {
 import { Badge } from "@/components/ui/badge";
 import LogoutButton from "./LogoutButton";
 import { Separator } from "./ui/separator";
+import { useMemo } from "react";
 
 export default function ProfileDropdown() {
+  const userPicture = useMemo(() => {
+    return localStorage.getItem("userPicture")?.replace(/['"]+/g, "");
+  }, []);
+
+  const userName = useMemo(() => {
+    return localStorage.getItem("userName")?.replace(/['"]+/g, "");
+  }, []);
+
+  const userEmail = useMemo(() => {
+    return localStorage.getItem("userEmail")?.replace(/['"]+/g, "");
+  }, []);
+
+  const accessToken = useMemo(() => {
+    return localStorage.getItem("accessToken")?.replace(/['"]+/g, "");
+  }, []);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="bg-white inline-flex rounded-full p-0">
         <Avatar className="md:hover:scale-110">
-          <AvatarImage
-            src={
-              localStorage.getItem("userPicture")?.replace(/['"]+/g, "") || ""
-            }
-          />
-          <AvatarFallback>
-            {localStorage.getItem("userName")?.charAt(0).toUpperCase()}
-          </AvatarFallback>
+          <AvatarImage src={userPicture} />
+          <AvatarFallback>{userName?.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="flex flex-col items-start">
         <DropdownMenuLabel>
           <Avatar>
-            <AvatarImage
-              src={
-                localStorage.getItem("userPicture")?.replace(/['"]+/g, "") || ""
-              }
-            />
-            <AvatarFallback>
-              {localStorage.getItem("userName")?.charAt(0).toUpperCase()}
-            </AvatarFallback>
+            <AvatarImage src={userPicture} />
+            <AvatarFallback>{userName?.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
         </DropdownMenuLabel>
         <Separator />
-        <DropdownMenuItem className="font-bold">
-          {localStorage.getItem("userName")?.replace(/['"]+/g, "")}
-        </DropdownMenuItem>
+        <DropdownMenuItem className="font-bold">{userName}</DropdownMenuItem>
+        <DropdownMenuItem>{userEmail}</DropdownMenuItem>
         <DropdownMenuItem>
-          {localStorage.getItem("userEmail")?.replace(/['"]+/g, "")}
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          {localStorage.getItem("accessToken")?.replace(/['"]+/g, "") ? (
+          {accessToken ? (
             <Badge variant="correct">Authenticated</Badge>
           ) : (
             <Badge variant="destructive">Not Authenticated</Badge>

@@ -47,15 +47,7 @@ function Home() {
             setPreviousPrompt(prompt);
             setPreviousEventData(data);
             setIsDialogOpen(true);
-            toast.success("Event created successfully!", {
-              description: "Check your Google Calendar to see the event.",
-              action: {
-                label: "Close",
-                onClick: () => {
-                  toast.dismiss();
-                },
-              },
-            });
+            toast.info("Our AI created an event for you!");
           }
         },
         onError: (error) => {
