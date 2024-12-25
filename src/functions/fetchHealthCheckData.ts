@@ -11,7 +11,6 @@ export const fetchHealthCheckData = async () => {
     }
 
     const json = await response.json();
-    //   console.log(json);
     return JSON.stringify(json, null, 2);
   } catch (error) {
     console.error("Error fetching data:", error);
