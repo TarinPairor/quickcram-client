@@ -104,7 +104,6 @@ function Home() {
 
   return (
     <div className="flex flex-col items-center min-h-screen">
-      {/* <Dictaphone /> */}
       <div className="absolute top-0 right-0 p-4">
         {localStorage.getItem("userName") &&
           localStorage.getItem("accessToken") && <ProfileDropdown />}
