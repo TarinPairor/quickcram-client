@@ -72,7 +72,6 @@ function Home() {
 
     const handleListen = () => {
       if (isListening) {
-        setPrompt("");
         mic.start();
         mic.onend = () => {
           console.log("continue..");
@@ -94,7 +93,7 @@ function Home() {
           .map((result) => result.transcript)
           .join("");
         console.log(transcript);
-        setPrompt(transcript);
+        setPrompt((prevPrompt) => prevPrompt + ". " + transcript);
         mic.onerror = (event) => {
           console.log(event.error);
         };
@@ -117,7 +116,7 @@ function Home() {
         </Button>
         {!mic ? (
           <span className="font-light text-xs">
-            changr browser for audio input
+            change browser for audio input
           </span>
         ) : (
           <Button
