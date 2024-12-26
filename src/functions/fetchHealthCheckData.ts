@@ -9,7 +9,7 @@ export const fetchHealthCheckData = async () => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    //test deployment
+    //test deployment 1
     const json = await response.json();
     return JSON.stringify(json, null, 2);
   } catch (error) {
