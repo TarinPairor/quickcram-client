@@ -93,7 +93,9 @@ function Home() {
           .map((result) => result.transcript)
           .join("");
         console.log(transcript);
-        setPrompt((prevPrompt) => prevPrompt + ". " + transcript);
+        setPrompt(
+          (prevPrompt) => prevPrompt + (prevPrompt ? ". " : " ") + transcript
+        );
         mic.onerror = (event) => {
           console.log(event.error);
         };
