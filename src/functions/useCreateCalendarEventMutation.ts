@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import { error } from "console";
 import { toast } from "sonner";
 
 const testEvent = {
