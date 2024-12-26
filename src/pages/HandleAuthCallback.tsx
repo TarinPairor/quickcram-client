@@ -31,11 +31,11 @@ function HandleAuthCallback() {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
 
-          const data = await response.json();
-          console.log(
-            "Access token received:",
-            data.access_token.substring(0, 6) || "No token"
-          );
+          // const data = await response.json();
+          // console.log(
+          //   "Access token received:",
+          //   data.access_token.substring(0, 6) || "No token"
+          // );
 
           localStorage.setItem("accessToken", "YouWish");
           localStorage.setItem("refreshToken", "YouWish");
