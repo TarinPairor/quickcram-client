@@ -127,6 +127,17 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
+              Timezone
+            </label>
+            <input
+              type="text"
+              value={updatedEventData?.start[0].timeZone}
+              className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              disabled
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
               End DateTime
             </label>
             {updatedEventData?.end?.map((item, index) => (
@@ -139,6 +150,17 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
                 disabled
               />
             ))}
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Timezone
+            </label>
+            <input
+              type="text"
+              value={updatedEventData?.end[0].timeZone}
+              className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              disabled
+            />
           </div>
         </div>
         <div className="flex justify-end mt-4">

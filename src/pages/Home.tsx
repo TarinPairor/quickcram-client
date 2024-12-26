@@ -94,7 +94,7 @@ function Home() {
           .join("");
         console.log(transcript);
         setPrompt(
-          (prevPrompt) => prevPrompt + (prevPrompt ? ". " : " ") + transcript
+          (prevPrompt) => prevPrompt + (prevPrompt ? ". " : "") + transcript
         );
         mic.onerror = (event) => {
           console.log(event.error);

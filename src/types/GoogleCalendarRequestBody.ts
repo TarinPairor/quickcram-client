@@ -4,8 +4,10 @@ export interface GoogleCalendarRequestBody {
   location?: string;
   start: {
     dateTime: string;
+    timeZone: string;
   }[];
   end: {
     dateTime: string;
+    timeZone: string;
   }[];
 }
