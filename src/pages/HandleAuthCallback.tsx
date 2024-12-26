@@ -32,12 +32,15 @@ function HandleAuthCallback() {
           }
 
           const data = await response.json();
-          console.log("Tokens received:", data);
+          console.log(
+            "Access token received:",
+            data.access_token.substring(0, 6) || "No token"
+          );
 
           //TODO: Encrypt
-          localStorage.setItem("accessToken", data.access_token);
-          localStorage.setItem("refreshToken", data.refresh_token);
-          localStorage.setItem("idToken", data.id_token);
+          localStorage.setItem("accessToken", "YouWish");
+          localStorage.setItem("refreshToken", "YouWish");
+          localStorage.setItem("idToken", "YouWish");
           toast.info("Authenticated");
           setValue(100);
           navigate("/");

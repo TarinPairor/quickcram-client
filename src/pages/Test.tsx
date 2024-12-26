@@ -13,8 +13,6 @@ export default function Test() {
   });
 
   console.log("Health check data:", healthCheck);
-
-  console.log("Health check data:", healthCheck);
   return (
     <div>
       <div className="mb-6 font-poppins">
