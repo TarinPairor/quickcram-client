@@ -37,7 +37,6 @@ function HandleAuthCallback() {
             data.access_token.substring(0, 6) || "No token"
           );
 
-          //TODO: Encrypt
           localStorage.setItem("accessToken", "YouWish");
           localStorage.setItem("refreshToken", "YouWish");
           localStorage.setItem("idToken", "YouWish");
