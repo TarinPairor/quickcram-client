@@ -11,7 +11,7 @@ export const fetchUserPayload = async (response: CredentialResponse) =>
   })
     .then((response) => response.json())
     .then((data) => {
-      // console.log("Verification response:", data);
+      console.log("Verification response:", data);
       localStorage.setItem("userName", JSON.stringify(data.payload.given_name));
       localStorage.setItem("userEmail", JSON.stringify(data.payload.email));
       localStorage.setItem("userPicture", JSON.stringify(data.payload.picture));
