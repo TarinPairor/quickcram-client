@@ -42,7 +42,6 @@ const createCalendarEvent = async (event: string) => {
     if (!response.ok) {
       console.log("Error creating calendar event:", response);
       throw new Error(`HTTP error! status: ${response.status}`);
-      throw error;
     }
   } catch (error) {
     console.error("Error creating calendar event:", error);
