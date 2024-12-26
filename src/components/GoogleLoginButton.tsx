@@ -8,7 +8,8 @@ const GoogleLoginButton = () => {
       size="large"
       shape="rectangular"
       onSuccess={(response) => {
-        console.log("Google fetching payload with crendentials:", response);
+        //NOTE: Uncomment the line below to see the response in the console
+        // console.log("Google fetching payload with crendentials:", response);
         fetchUserPayload(response);
         redirectToAuthPage();
       }}

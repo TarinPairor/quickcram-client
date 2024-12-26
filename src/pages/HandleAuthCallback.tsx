@@ -11,7 +11,8 @@ function HandleAuthCallback() {
     const handleCallback = async () => {
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get("code");
-      console.log("Authorization Code:", code);
+      // NOTE: Uncomment the line below to see the code in the console
+      // console.log("Authorization Code:", code);
       setValue(40);
 
       if (code) {

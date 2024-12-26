@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { error } from "console";
 import { toast } from "sonner";
 
 const testEvent = {
@@ -36,10 +37,12 @@ const createCalendarEvent = async (event: string) => {
       }
     );
     console.log("Sent reformatted event:", { event: reformattedEvent });
-    console.log(response);
+    //NOTE: Uncomment the line below to see the response in the console
+    // console.log(response);
     if (!response.ok) {
       console.log("Error creating calendar event:", response);
       throw new Error(`HTTP error! status: ${response.status}`);
+      throw error;
     }
   } catch (error) {
     console.error("Error creating calendar event:", error);
