@@ -9,9 +9,7 @@ const GoogleLoginButton = () => {
       shape="rectangular"
       onSuccess={(response) => {
         console.log("Google fetching payload with crendentials:", response);
-        if (!localStorage.getItem("userName")) {
-          fetchUserPayload(response);
-        }
+        fetchUserPayload(response);
         redirectToAuthPage();
       }}
       onError={() => {
