@@ -107,8 +107,7 @@ function Home() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       <div className="absolute top-0 right-0 p-4">
-        {localStorage.getItem("userName") &&
-          localStorage.getItem("accessToken") && <ProfileDropdown />}
+        <ProfileDropdown />
       </div>
       <AppHeader />
       <div className="flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
