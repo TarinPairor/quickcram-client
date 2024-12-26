@@ -120,7 +120,7 @@ function Home() {
           </span>
         ) : (
           <Button
-            variant={"ghost"}
+            variant={"default"}
             onClick={() => setIsListening((prevState) => !prevState)}
           >
             Start/Stop {isListening ? <span>🎙️...</span> : <span>🛑</span>}
