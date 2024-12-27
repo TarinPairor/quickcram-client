@@ -111,7 +111,11 @@ function Home() {
       </div>
       <AppHeader />
       <div className="flex flex-wrap justify-center gap-2 m-10 p-10 border-4 rounded-md">
-        <Button onClick={handleChatGPTClick} variant={"default"}>
+        <Button
+          onClick={handleChatGPTClick}
+          variant={"default"}
+          disabled={!!localStorage.getItem("accessToken")}
+        >
           Submit Event
         </Button>
         {!mic ? (
