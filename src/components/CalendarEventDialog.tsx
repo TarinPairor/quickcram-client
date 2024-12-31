@@ -82,7 +82,7 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
               value={updatedEventData?.summary || ""}
               onChange={handleChange}
               className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              disabled
+              // disabled
             />
           </div>
           <div>
@@ -94,7 +94,7 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
               value={updatedEventData?.description || ""}
               onChange={handleChange}
               className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              disabled
+              // disabled
             />
           </div>
           <div>
@@ -107,7 +107,7 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
               value={updatedEventData?.location || ""}
               onChange={handleChange}
               className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              disabled
+              // disabled
             />
           </div>
           <div>
@@ -121,7 +121,7 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
                 value={item.dateTime}
                 onChange={(e) => handleArrayChange(e, index, "start")}
                 className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                disabled
+                // disabled
               />
             ))}
           </div>
@@ -133,7 +133,7 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
               type="text"
               value={updatedEventData?.start[0].timeZone}
               className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              disabled
+              // disabled
             />
           </div>
           <div>
@@ -147,7 +147,7 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
                 value={item.dateTime}
                 onChange={(e) => handleArrayChange(e, index, "end")}
                 className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                disabled
+                // disabled
               />
             ))}
           </div>
@@ -159,7 +159,7 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
               type="text"
               value={updatedEventData?.end[0].timeZone}
               className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              disabled
+              // disabled
             />
           </div>
         </div>
