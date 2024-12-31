@@ -9,22 +9,30 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { GoogleCalendarRequestBody } from "@/types/GoogleCalendarRequestBody";
+import { useCreateCalendarEventMutation } from "@/functions/useCreateCalendarEventMutation";
 
 interface CalendarEventDialogProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  onConfirm: (updatedEventData: GoogleCalendarRequestBody) => void;
+  // onConfirm: (updatedEventData: GoogleCalendarRequestBody) => void;
   eventData?: string;
 }
 
 const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
   isOpen,
   onRequestClose,
-  onConfirm,
+  // onConfirm,
   eventData,
 }) => {
+  const createCalendarEventMutation = useCreateCalendarEventMutation();
   const [updatedEventData, setUpdatedEventData] =
     useState<GoogleCalendarRequestBody | null>(null);
+
+  const onConfirm = (eventData: GoogleCalendarRequestBody) => {
+    if (eventData) {
+      createCalendarEventMutation.mutate(JSON.stringify(eventData));
+    }
+  };
 
   useEffect(() => {
     if (eventData) {
@@ -73,94 +81,57 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
         </DialogHeader>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Summary
-            </label>
+            <label className="block text-sm font-medium">Summary</label>
             <input
               type="text"
               name="summary"
               value={updatedEventData?.summary || ""}
               onChange={handleChange}
-              className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              // disabled
+              className="mt-1 bg-white p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm "
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Description
-            </label>
+            <label className="block text-sm font-medium">Description</label>
             <textarea
               name="description"
               value={updatedEventData?.description || ""}
               onChange={handleChange}
-              className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              // disabled
+              className="mt-1 bg-white p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Location
-            </label>
+            <label className="block text-sm font-medium">Location</label>
             <input
               type="text"
               name="location"
               value={updatedEventData?.location || ""}
               onChange={handleChange}
-              className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              // disabled
+              className="mt-1 bg-white p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Start DateTime
-            </label>
+            <label className="block text-sm font-medium">Start DateTime</label>
             {updatedEventData?.start?.map((item, index) => (
               <input
                 key={index}
                 type="datetime-local"
                 value={item.dateTime}
                 onChange={(e) => handleArrayChange(e, index, "start")}
-                className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                // disabled
+                className="mt-1 bg-white p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             ))}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Timezone
-            </label>
-            <input
-              type="text"
-              value={updatedEventData?.start[0].timeZone}
-              className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              // disabled
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              End DateTime
-            </label>
+            <label className="block text-sm font-medium">End DateTime</label>
             {updatedEventData?.end?.map((item, index) => (
               <input
                 key={index}
                 type="datetime-local"
                 value={item.dateTime}
                 onChange={(e) => handleArrayChange(e, index, "end")}
-                className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                // disabled
+                className="mt-1 bg-white p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             ))}
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Timezone
-            </label>
-            <input
-              type="text"
-              value={updatedEventData?.end[0].timeZone}
-              className="mt-1 p-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              // disabled
-            />
           </div>
         </div>
         <div className="flex justify-end mt-4">

@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import GoogleLoginButton from "../components/GoogleLoginButton";
 import { useChatGPTMutation } from "../functions/useChatGPTMutation";
-import { useCreateCalendarEventMutation } from "../functions/useCreateCalendarEventMutation";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import CalendarEventDialog from "../components/CalendarEventDialog";
@@ -26,7 +25,6 @@ function Home() {
   );
 
   const chatGPTMutation = useChatGPTMutation();
-  const createCalendarEventMutation = useCreateCalendarEventMutation();
 
   const handleChatGPTClick = async () => {
     if (!prompt) {
@@ -54,13 +52,6 @@ function Home() {
           console.error("Error calling chatgpt:", error);
         },
       });
-    }
-  };
-
-  const handleConfirm = () => {
-    if (eventData) {
-      createCalendarEventMutation.mutate(eventData);
-      setIsDialogOpen(false);
     }
   };
 
@@ -139,7 +130,7 @@ function Home() {
         <CalendarEventDialog
           isOpen={isDialogOpen}
           onRequestClose={() => setIsDialogOpen(false)}
-          onConfirm={handleConfirm}
+          // onConfirm={handleConfirm}
           eventData={eventData}
         />
       </div>
