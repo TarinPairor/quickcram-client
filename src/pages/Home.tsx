@@ -114,7 +114,7 @@ function Home() {
         <Button
           onClick={handleChatGPTClick}
           variant={"default"}
-          disabled={!!localStorage.getItem("accessToken")}
+          disabled={localStorage.getItem("accessToken") !== "YouWish"}
         >
           Submit Event
         </Button>
