@@ -24,7 +24,8 @@ const CalendarEventDialog: React.FC<CalendarEventDialogProps> = ({
   // onConfirm,
   eventData,
 }) => {
-  const createCalendarEventMutation = useCreateCalendarEventMutation();
+  const createCalendarEventMutation =
+    useCreateCalendarEventMutation(onRequestClose);
   const [updatedEventData, setUpdatedEventData] =
     useState<GoogleCalendarRequestBody | null>(null);
 

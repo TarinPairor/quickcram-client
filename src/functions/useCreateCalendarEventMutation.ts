@@ -48,11 +48,12 @@ const createCalendarEvent = async (event: string) => {
   }
 };
 
-export const useCreateCalendarEventMutation = () => {
+export const useCreateCalendarEventMutation = (onRequestClose: () => void) => {
   return useMutation<void, Error, string>({
     mutationFn: (event: string) => createCalendarEvent(event),
     onSuccess: () => {
       console.log("Calendar event created successfully!");
+      onRequestClose();
       toast.success("Event created successfully!", {
         description: "Check your Google Calendar!",
         action: {
