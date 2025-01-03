@@ -35,7 +35,11 @@ const handleChatGPTRequest = async (
 };
 
 export const useChatGPTMutation = () => {
-  return useMutation<string | undefined, Error, string>({
+  const mutation = useMutation<string | undefined, Error, string>({
     mutationFn: (event: string) => handleChatGPTRequest(event),
   });
+
+  const isPending = mutation.isPending;
+
+  return { ...mutation, isPending };
 };
