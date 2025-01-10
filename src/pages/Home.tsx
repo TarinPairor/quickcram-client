@@ -131,7 +131,7 @@ function Home() {
           variant={"default"}
           disabled={localStorage.getItem("accessToken") !== "YouWish"}
         >
-          {isPending ? "Submit Event" : <Spinner />}
+          {!isPending ? "Submit Event" : <Spinner />}
         </Button>
         {!mic ? (
           <span className="font-light text-xs">
