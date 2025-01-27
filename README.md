@@ -12,4 +12,12 @@ Let AI automatically create events for you with basic descriptions.
 
 - Only works with my Google Calendar.
 
+## Tech Stack
+
+- React
+- Google Calendar API
+- Speech Recognition Web API
+- Vercel
+- Express TypeScript
+
 (Click Here!)[https://quickcram-client.vercel.app/]
