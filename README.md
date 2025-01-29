@@ -19,5 +19,6 @@ Let AI automatically create events for you with basic descriptions.
 - Speech Recognition Web API
 - Vercel
 - Express TypeScript
+- OpenAI API
 
 (Click Here!)[https://quickcram-client.vercel.app/]
